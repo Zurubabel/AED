@@ -1,0 +1,38 @@
+---
+title: "Aula 13 - Scatterplots"
+author: "Zurubabel"
+date: "7 de outubro de 2017"
+output: html_document
+---
+
+```{r setup, results='hide', message=FALSE, warning=FALSE}
+library("ggplot2")
+```
+
+# Aula 13 - Visualizando dados numéricos
+
+Um gráfico que pode ser usado para visualizar o relacionamento entre dois dados numéricos é o scatterplot. 
+
+Para maiores informações sobre como criar scatterplots no `ggplot`, acesse a  [documentação](http://ggplot2.tidyverse.org/reference/geom_point.html).
+
+Vamos para algumas partes:
+
+## 1 - Explorar os dados
+
+Antes de criarmos algum gráfico, é bom verificarmos os dados.
+
+```{r}
+  summary(mtcars)
+  head(mtcars, 20)
+
+```
+
+## 2 - Plotando os dados
+
+Logo após escolher quais serão os dados a serem analizados, devemos escolher qual é a *variável explicativa* (eixo *x*) e qual é a *variável de resposta*.
+
+```{r}
+
+  ggplot(mtcars, aes(qsec, mpg)) + geom_point()
+
+```
