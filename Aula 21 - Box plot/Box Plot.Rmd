@@ -1,0 +1,61 @@
+---
+title: "Aula 21 - Box Plot"
+author: "Zurubabel"
+date: "10 de outubro de 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+```
+## Aula 21 - Box Plot
+
+O box plot é usado para representar a concentração dos seus dados. Com ele você consegue verificar o qual é a *mediana* (que será destacada no gráfico), qual é o intervalo interquartil e possíveis outliers.
+
+Podemos verificar o gráfico logo abaixo com um exemplo bem simples:
+
+```{r}
+  dados <- data.frame("X", 1:8)
+  colnames(dados) <- c("x", "y")
+  
+  ggplot(dados, aes(x,y)) + geom_boxplot()
+
+
+```
+
+Observem que os dados são divididos em *quartis*, que, como o nome sujere, são os quartos do vetor `1:8`. As linhas abaixo e acima são dos limites dos dados. Podemos calcular o limite superior:
+$$
+  Q3 + 1,5IQR
+$$
+Para calcular o limite inferior é:
+$$
+  Q1 - 1,5IQR
+$$
+
+Qualquer Valor além destes limites serão considerados outliers e serão representados como pontos no gráfico.
+
+## Verificando a concentração dos dados
+
+Podemos verificar a diferença de concentração dos dados através do box plot. Vejamos o exemplo
+
+```{r}
+  nomes <- c("x", "y")
+
+  dados <- data.frame("x", 1:8)
+  colnames(dados) <- nomes
+  
+  ggplot(dados, aes(x,y)) + geom_boxplot()
+  
+  # Aumentando a concentração do 1 ao 4
+  dados <- data.frame("x", c(1:8, replicate(4, 1:4)))
+  colnames(dados) <- nomes
+  
+  ggplot(dados, aes(x,y)) + geom_boxplot()
+  
+  # Aumentando ainda mais a concentração do 1 ao 4
+  dados <- data.frame("x", c(1:8, replicate(8, 1:4)))
+  colnames(dados) <- nomes
+  
+  ggplot(dados, aes(x,y)) + geom_boxplot()
+
+```

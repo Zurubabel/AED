@@ -1,0 +1,35 @@
+---
+title: "Aula 23 - Bar Plot"
+author: "Zurubabel"
+date: "24 de outubro de 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+```
+
+# Bar Plot
+
+Com o bar plot (gráfico de barras) você consegue uma representação de dados categóricos. Com o gráfico você mostra qual é a categoria e quantas instâncias delas existem nos seus dados.
+
+Para criar um gráfico de barras, você pode usar o código abaixo (usando `ggplot`), mas antes de criar o gráfico, devemos verificar se o dado é categórico ou não.
+
+```{r}
+is.factor(mtcars$cyl)
+
+```
+
+Pelo fato do resultado ser falso, devemos converter o dado para factor.
+
+```{r}
+ggplot(mtcars, aes(as.factor(cyl))) + geom_bar()
+
+```
+
+Usei o `as.factor` pois o campo `gear` não é categórico (factor), então precisei converter.
+
+Também podemos \"colorir\" os gráficos para representarmos outros dados categóricos. Também não podemos nos esquecer de que as cores também são representações de dados categóricos.
+```{r}
+ggplot(mtcars, aes(as.factor(cyl))) + geom_bar(aes(fill = as.factor(gear)))
+```
